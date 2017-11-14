@@ -1,48 +1,50 @@
-package Revenge_Bullet;
+package panel;
 
 import javax.swing.*;
 
+import frame.MainFrame;
+import frame.PanelManager;
+
 public class IntroPanel extends JPanel {
 
-	//¡ÚÁ¦¸ñ¡Ú
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	JButton gameStartButton = new JButton("gameStart");
 	ImageIcon icon = new ImageIcon("image/Title.png");
 	JLabel Title = new JLabel();
 	///////////////////////////////////////////////////////
 	
-	//¡Ú¿òÁ÷ÀÌ´Â ³ð¡Ú
+	//ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½
 	JLabel walkingMan = new JLabel();
 	IntroPanel introPanel = this;
 	TitleMove titleMove = new TitleMove(introPanel, walkingMan);
 	///////////////////////////////////////////////////////
 	
-	//¡Ú °ÔÀÓ ½ÃÀÛ ¹öÆ° ´©¸£¸é ´Ù¸¥ ÆÐ³Î·Î º¯°æ
-	Stage1 stage1Panel = new Stage1();
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Ð³Î·ï¿½ ï¿½ï¿½ï¿½ï¿½
+	//Stage1Panel stage1Panel = new Stage1Panel();
 	///////////////////////////////////////////////////////
 
 	//
 	private MainFrame mainFrame;
 	
 	
-	//¡ÚÁ¦¸ñ¡Ú
-	public IntroPanel(MainFrame mainFrame) {
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public IntroPanel(PanelManager panelManager) {
 
-		this.mainFrame = mainFrame;
+		//this.mainFrame = mainFrame;
 		
 		setLayout(null);
 
 		Title.setBounds(200, 100, 1000, 600);
 		Title.setIcon(icon);
 
-		//¡Ú¹öÆ° ´©¸£¸é ´Ù¸¥ ÆÐ³Î·Î º¯°æ
+		//ï¿½Ú¹ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Ð³Î·ï¿½ ï¿½ï¿½ï¿½ï¿½
 		gameStartButton.setBounds(700, 500, 100, 50);
 		add(gameStartButton);
 		gameStartButton.addActionListener(e -> {
 			//removeAll();
 			//repaint();
 			titleMove.interrupt();
-			mainFrame.setContentPane(stage1Panel);
-			mainFrame.revalidate();
+			panelManager.changePanel(PanelManager.STAGE1_PANEL);
 
 		});
 		//////////////////////////////////////////////////
@@ -62,7 +64,7 @@ public class IntroPanel extends JPanel {
 		ImageIcon man2Icon = new ImageIcon("image/man2.png");
 		ImageIcon man3Icon = new ImageIcon("image/shoot2.png");
 
-		int MoveX = 0;/*XÃà ÀÌµ¿ÇÏ´Â ³ð*/ 
+		int MoveX = 0;/*Xï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½*/ 
 
 		public TitleMove(IntroPanel walkingMan, JLabel label) {
 			panel = walkingMan;
@@ -89,6 +91,6 @@ public class IntroPanel extends JPanel {
 			} catch (InterruptedException e) {
 				
 			}
-		}// run() Á¾·á
-	}// TitleMove() Á¾·á
-}//IntroPanel() Á¾·á
+		}// run() ï¿½ï¿½ï¿½ï¿½
+	}// TitleMove() ï¿½ï¿½ï¿½ï¿½
+}//IntroPanel() ï¿½ï¿½ï¿½ï¿½
