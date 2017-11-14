@@ -11,6 +11,10 @@ public class PanelManager {
 		this.mainFrame = mainFrame;
 		
 		//패널 다 생성
+		
+		introPanel = new IntroPanel(mainFrame);
+		stage1 = new Stage1();
+		mainFrame = new MainFrame();
 	}
 	
 	public void changePanel(JPanel panel){
