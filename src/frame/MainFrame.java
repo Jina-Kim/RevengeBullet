@@ -1,38 +1,32 @@
-package Revenge_Bullet;
+package frame;
 
 import java.awt.*;
 
 import javax.swing.JFrame;
 
+import panel.IntroPanel;
+
 public class MainFrame extends JFrame{
-	
-	private Container contentPane = getContentPane();
 	
 	private Image img;
 	private Cursor cursor;
-	
-	
-	private MainFrame mainFrame = this;
+
+	private PanelManager panelManager;
 	
 	public MainFrame(){
-		
-		//★마우스 커서 설정★ 
-		////////////////////////////////////////////////////////
+		super("Revenge Bullets");
+		//cursor image setting
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		img = tk.getImage("image/target2.png");
 		Point point = new Point(0,0);
 		cursor = tk.createCustomCursor(img, point, "reman");
 		setCursor(cursor);
-		////////////////////////////////////////////////////////
 		
-		setTitle("Revenge Bullets");
 		setSize(1500, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		
-		setContentPane(new IntroPanel(mainFrame));
-		
+		panelManager = new PanelManager(this);
+		panelManager.changePanel(PanelManager.INTRO_PANEL);
 		setVisible(true);
-		
 	}
 }

@@ -1,16 +1,18 @@
-package Revenge_Bullet;
+package panel;
 
 import java.awt.Color;
 
 import javax.swing.*;
 
-public class Stage1 extends JPanel{
+import frame.PanelManager;
+
+public class Stage1Panel extends JPanel{
 	
 	ImageIcon shooter = new ImageIcon("image/shoot2.png");
 	JLabel label = new JLabel();
 	
 	
-	public Stage1(){
+	public Stage1Panel(PanelManager panelManager){
 
 		setLayout(null);
 		setBackground(Color.yellow);
