@@ -7,13 +7,13 @@ import frame.PanelManager;
 
 public class IntroPanel extends JPanel {
 
-	//�������
+	//Title gameStart Button, TitleImage
 	JButton gameStartButton = new JButton("gameStart");
 	ImageIcon icon = new ImageIcon("image/Title.png");
 	JLabel Title = new JLabel();
 	///////////////////////////////////////////////////////
 	
-	//�ڿ����̴� ���
+	//Main Moving Thread image
 	JLabel walkingMan = new JLabel();
 	IntroPanel introPanel = this;
 	TitleMove titleMove = new TitleMove(introPanel, walkingMan);
@@ -27,7 +27,7 @@ public class IntroPanel extends JPanel {
 	private MainFrame mainFrame;
 	
 	
-	//�������
+	//JFrame --> 1. IntroPanel
 	public IntroPanel(PanelManager panelManager) {
 
 		//this.mainFrame = mainFrame;
@@ -64,7 +64,7 @@ public class IntroPanel extends JPanel {
 		ImageIcon man2Icon = new ImageIcon("image/man2.png");
 		ImageIcon man3Icon = new ImageIcon("image/shoot2.png");
 
-		int MoveX = 0;/*X�� �̵��ϴ� ��*/ 
+		int MoveX = 0;/* Moving X Position*/ 
 
 		public TitleMove(IntroPanel walkingMan, JLabel label) {
 			panel = walkingMan;
@@ -91,6 +91,6 @@ public class IntroPanel extends JPanel {
 			} catch (InterruptedException e) {
 				
 			}
-		}// run() ����
-	}// TitleMove() ����
-}//IntroPanel() ����
+		}// run() end
+	}// TitleMove() end
+}//IntroPanel() end
