@@ -2,14 +2,18 @@ package panel;
 
 import javax.swing.*;
 
+import frame.ImageCollection;
 import frame.MainFrame;
 import frame.PanelManager;
 
+
 public class IntroPanel extends JPanel {
+	
+
 
 	//Title gameStart Button, TitleImage
 	JButton gameStartButton = new JButton("gameStart");
-	ImageIcon icon = new ImageIcon("image/Title.png");
+	//ImageIcon icon = new ImageIcon("image/Title.png");
 	JLabel Title = new JLabel();
 	///////////////////////////////////////////////////////
 	
@@ -35,7 +39,7 @@ public class IntroPanel extends JPanel {
 		setLayout(null);
 
 		Title.setBounds(200, 100, 1000, 600);
-		Title.setIcon(icon);
+		Title.setIcon(ImageCollection.Title_Collection);
 
 		//�ڹ�ư ������ �ٸ� �гη� ����
 		gameStartButton.setBounds(700, 500, 100, 50);
