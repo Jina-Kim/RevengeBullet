@@ -12,6 +12,6 @@ public class ImageCollection {
 	public static ImageIcon target2_Collection_Image = new ImageIcon("image/target2.png");
 	public static ImageIcon Title_Collection_Image = new ImageIcon("image/Title.png");
 	public static ImageIcon Title_fire_shoot_Collection_Image = new ImageIcon("image/fire_shoot2.png");
-	public static ImageIcon Title_Background_Image = new ImageIcon("image/IntroPanel.png");
+	public static ImageIcon Title_Background_Image = new ImageIcon("image/IntroPanel2.png");
 	
 }

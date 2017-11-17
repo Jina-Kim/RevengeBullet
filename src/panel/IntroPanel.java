@@ -13,13 +13,14 @@ import frame.MainFrame;
 import frame.PanelManager;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 
 public class IntroPanel extends JPanel {
 
 	// Title gameStart Button, TitleImage
 	JButton gameStartButton = new JButton("gameStart");
 	///////////////////////////////////////////////////////
-
+	
 	// Main Moving Thread image
 	JLabel walkingMan = new JLabel();
 	IntroPanel introPanel = this;
@@ -40,21 +41,22 @@ public class IntroPanel extends JPanel {
 
 	// Draw BackGround Image
 	///////////////////////////////////////////////////////////////////
-	ImageIcon icon = new ImageIcon("image/IntroPanel.png");
-
+	ImageIcon icon = new ImageIcon("image/IntroPanel2.png");
 	Image IntroPanel_Draw_BackGround_img = icon.getImage();
+	
 
 	public void paintComponent(Graphics g) {
 		
-		g.drawImage(IntroPanel_Draw_BackGround_img, 240, 0, super.getWidth(), super.getHeight(), this);
+		g.drawImage(IntroPanel_Draw_BackGround_img, 0, 0, this.getWidth(), this.getHeight(), this);
 		super.paintComponent(g);
 		setOpaque(false);
+		
 	}
 	///////////////////////////////////////////////////////////////////
 
 	// JFrame --> 1. IntroPanel
 	public IntroPanel(PanelManager panelManager) {
-
+		
 		setLayout(null);
 
 		// button clicked -> stage1 start
@@ -98,7 +100,7 @@ public class IntroPanel extends JPanel {
 						manLabel.setIcon(ImageCollection.man2_Title_walking2_Image);
 						manLabel.setBounds(MoveX, 600, 150, 150);
 					}
-					Thread.sleep(10);
+					Thread.sleep(1);
 				}
 				manLabel.setIcon(ImageCollection.shoot2_Collection_Image);
 				Thread.sleep(500);
@@ -129,12 +131,13 @@ public class IntroPanel extends JPanel {
 
 					title_down_move += 1;
 					if (title_down_move == 100) {
+						panel.add(gameStartButton);
 						break;
 					} else {
 						label.setIcon(ImageCollection.Title_Collection_Image);
 						label.setBounds(200, title_down_move, 1000, 600);
 					}
-					Thread.sleep(10);
+					Thread.sleep(7);
 				}
 			} catch (Exception e) {
 
