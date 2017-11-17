@@ -15,7 +15,7 @@ public class Stage1Panel extends JPanel{
 	public Stage1Panel(PanelManager panelManager){
 
 		setLayout(null);
-		setBackground(Color.yellow);
+		setBackground(Color.white);
 		
 		label.setIcon(shooter);
 		label.setBounds(100, 100, 500, 500);
