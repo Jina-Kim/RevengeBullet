@@ -18,7 +18,6 @@ public class IntroPanel extends JPanel {
 
 	// Title gameStart Button, TitleImage
 	JButton gameStartButton = new JButton("gameStart");
-	//JLabel Title = new JLabel();
 	///////////////////////////////////////////////////////
 
 	// Main Moving Thread image
@@ -26,45 +25,41 @@ public class IntroPanel extends JPanel {
 	IntroPanel introPanel = this;
 	TitleMove titleMove = new TitleMove(introPanel, walkingMan);
 	///////////////////////////////////////////////////////
-	
-	//Title Moving Down Thread image
+
+	// Title Moving Down Thread image
 	JLabel title_moving_down = new JLabel();
 	TitleDownMove titleDownMove = new TitleDownMove(introPanel, title_moving_down);
 	///////////////////////////////////////////////////////
-	
-	//backGround Image
+
+	// backGround Image
 	JLabel title_back_ground = new JLabel();
 
 	//
 	private MainFrame mainFrame;
 	//
-	
-	//Draw BackGround Image
-	///////////////////////////////////////////////////////
-	ImageIcon icon = new ImageIcon("image/introPanel.png");
-	
+
+	// Draw BackGround Image
+	///////////////////////////////////////////////////////////////////
+	ImageIcon icon = new ImageIcon("image/IntroPanel.png");
+
 	Image IntroPanel_Draw_BackGround_img = icon.getImage();
-	
-	public void pointComponent(Graphics g){
+
+	public void paintComponent(Graphics g) {
+		
+		g.drawImage(IntroPanel_Draw_BackGround_img, 240, 0, super.getWidth(), super.getHeight(), this);
 		super.paintComponent(g);
-		
-		g.drawImage(IntroPanel_Draw_BackGround_img, 0, 0, getWidth(), getHeight(), this);
-		
+		setOpaque(false);
 	}
-	///////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
 
 	// JFrame --> 1. IntroPanel
 	public IntroPanel(PanelManager panelManager) {
 
 		setLayout(null);
-		
-		
-		
+
 		// button clicked -> stage1 start
 		gameStartButton.setBounds(700, 500, 100, 50);
-		//add(gameStartButton);
 		gameStartButton.addActionListener(e -> {
-		
 			titleMove.interrupt();
 			panelManager.changePanel(PanelManager.STAGE1_PANEL);
 		});
@@ -77,7 +72,6 @@ public class IntroPanel extends JPanel {
 
 	}
 	///////////////////////////////////////////////////////
-
 
 	public class TitleMove extends Thread {
 
@@ -130,14 +124,13 @@ public class IntroPanel extends JPanel {
 		public void run() {
 			try {
 				while (true) {
-					
+
 					panel.addMouseListener(new MyMouseListener(panel, label, titleDownMove, gameStartButton));
-					
+
 					title_down_move += 1;
 					if (title_down_move == 100) {
 						break;
-					}
-					else{
+					} else {
 						label.setIcon(ImageCollection.Title_Collection_Image);
 						label.setBounds(200, title_down_move, 1000, 600);
 					}
@@ -145,11 +138,7 @@ public class IntroPanel extends JPanel {
 				}
 			} catch (Exception e) {
 
-				
 			}
 		}
 	}
 }// IntroPanel() end
-
-
-
