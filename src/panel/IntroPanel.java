@@ -1,16 +1,12 @@
 package panel;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-import frame.ImageCollection;
-import frame.MainFrame;
-import frame.PanelManager;
+import frame.*;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -44,10 +40,10 @@ public class IntroPanel extends JPanel {
 	ImageIcon icon = new ImageIcon("image/IntroPanel2.png");
 	Image IntroPanel_Draw_BackGround_img = icon.getImage();
 	
-
 	public void paintComponent(Graphics g) {
 		
 		g.drawImage(IntroPanel_Draw_BackGround_img, 0, 0, this.getWidth(), this.getHeight(), this);
+	
 		super.paintComponent(g);
 		setOpaque(false);
 		
@@ -143,5 +139,5 @@ public class IntroPanel extends JPanel {
 
 			}
 		}
-	}
+	}//TitleDownMove() end
 }// IntroPanel() end

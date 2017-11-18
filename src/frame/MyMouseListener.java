@@ -1,11 +1,10 @@
-package panel;
+package frame;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import panel.IntroPanel;
 
 import javax.swing.*;
-
 import panel.IntroPanel.TitleDownMove;
 
 public class MyMouseListener implements MouseListener {
