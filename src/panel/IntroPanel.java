@@ -11,7 +11,9 @@ import frame.*;
 
 public class IntroPanel extends JPanel {
 
-	private JButton startBtn = new JButton(ImageCollection.START_BTN_IMAGE);
+	private JButton hostStartBtn = new JButton(ImageCollection.HOST_START_BTN_IMAGE);
+	private JButton clientStartBtn = new JButton(ImageCollection.CLIENT_START_BTN_IMAGE);
+	
 	private JLabel man = new JLabel();
 	private JLabel title = new JLabel();
 	//Thread
@@ -23,21 +25,28 @@ public class IntroPanel extends JPanel {
 		setLayout(null);
 		
 		// button clicked -> stage1 start
-		startBtn.setBounds(330, 400, 300, 50);
-		startBtn.setOpaque(false);
-		startBtn.setContentAreaFilled(false);
-		startBtn.setBorderPainted(false);
-		//startBtn.setPressedIcon(ImageIcon);
-		startBtn.addActionListener(e -> {
+		hostStartBtn.setBounds(150, 340, 500, 60);
+		hostStartBtn.setOpaque(false);
+		hostStartBtn.setContentAreaFilled(false);
+		hostStartBtn.setBorderPainted(false);
+		hostStartBtn.setPressedIcon(ImageCollection.HOST_START_BTN_CLICK_IMAGE);
+		hostStartBtn.addActionListener(e -> {
 			manMoveThread.interrupt();
-			panelManager.changePanel(PanelManager.STAGE1_PANEL);
+			panelManager.changePanel(PanelManager.READY_PANEL);
+		});
+		
+		clientStartBtn.setBounds(180, 420, 500, 60);
+		clientStartBtn.setOpaque(false);
+		clientStartBtn.setContentAreaFilled(false);
+		clientStartBtn.setBorderPainted(false);
+		clientStartBtn.setPressedIcon(ImageCollection.CLIENT_START_BTN_CLCK_IMAGE);
+		clientStartBtn.addActionListener(e -> {
+			manMoveThread.interrupt();
+			panelManager.changePanel(PanelManager.CONNECT_PANEL);
 		});
 		
 		add(man);
 		add(title);
-		
-		manMoveThread.start();
-		titleMoveDownThread.start();
 		
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -47,9 +56,14 @@ public class IntroPanel extends JPanel {
 				//if(arg0.getClickCount() == 1){
 				titleMoveDownThread.interrupt();
 				title.setBounds(50, 200, 800, 150);
-				add(startBtn);
+				add(hostStartBtn);
+				add(clientStartBtn);
+				repaint();
 			}
 		});
+		
+		manMoveThread.start();
+		titleMoveDownThread.start();	
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -95,7 +109,8 @@ public class IntroPanel extends JPanel {
 				while (true) {
 					title_down_move += 1;
 					if (title_down_move == 200) {
-						add(startBtn);
+						add(hostStartBtn);
+						add(clientStartBtn);
 						break;
 					} else {
 						title.setIcon(ImageCollection.TITLE_IMAGE);
