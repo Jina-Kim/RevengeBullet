@@ -36,8 +36,8 @@ public class IntroPanel extends JPanel {
 			titleMoveDownThread.interrupt();
 			Receiver receiver = new Receiver();
 			receiver.start();
-			panelManager.changePanel(PanelManager.READY_PANEL);
 			panelManager.setHostClient(1);
+			panelManager.changePanel(PanelManager.READY_PANEL);
 		});
 		
 		clientStartBtn.setBounds(180, 420, 500, 60);
@@ -48,8 +48,8 @@ public class IntroPanel extends JPanel {
 		clientStartBtn.addActionListener(e -> {
 			manMoveThread.interrupt();
 			titleMoveDownThread.interrupt();
-			panelManager.changePanel(PanelManager.CONNECT_PANEL);
 			panelManager.setHostClient(2);
+			panelManager.changePanel(PanelManager.CONNECT_PANEL);
 		});
 		
 		add(man);

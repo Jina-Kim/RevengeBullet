@@ -20,6 +20,11 @@ public class ImageCollection {
 	public final static ImageIcon CONNECT_BTN_IMAGE = new ImageIcon("img/connect_btn.png");
 	public final static ImageIcon CONNECT_BTN_CLICK_IMAGE = new ImageIcon("img/connect_btn_clicked.png");
 	
+	public final static ImageIcon READY_BTN_IMAGE = new ImageIcon("img/ready_btn.png");
+	public final static ImageIcon READY_BTN_CLICK_IMAGE = new ImageIcon("img/ready_btn_clicked.png");
+	public final static ImageIcon GAME_START_BTN_IMAGE = new ImageIcon("img/game_start_btn.png");
+	public final static ImageIcon GAME_START_BTN_CLICK_IMAGE = new ImageIcon("img/game_start_btn_clicked.png");
+	
 	public final static ImageIcon STAGE1_IMAGE = new ImageIcon("img/stage1.png");
 	public final static ImageIcon ENEMY1_IMAGE = new ImageIcon("img/game/enemy1.png");
 	public final static ImageIcon ENEMY2_IMAGE = new ImageIcon("img/game/enemy2.png");

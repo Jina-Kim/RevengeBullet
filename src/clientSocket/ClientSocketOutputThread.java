@@ -3,14 +3,8 @@ package clientSocket;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 public class ClientSocketOutputThread extends Thread {
 
@@ -20,6 +14,7 @@ public class ClientSocketOutputThread extends Thread {
 	public ClientSocketOutputThread(Socket socket) {
 		try {
 			dos = new DataOutputStream(socket.getOutputStream());
+			dos.writeUTF("client connected");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

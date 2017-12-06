@@ -16,21 +16,17 @@ public class ConnectPanel extends JPanel{
 
 	private JButton connectBtn = new JButton(ImageCollection.CONNECT_BTN_IMAGE);
 	private JTextField IPtextField = new JTextField();
-	private String IP;
 	
 	public ConnectPanel(PanelManager panelManager) {
 		setLayout(null);
-		
 		connectBtn.setBounds(250, 450, 500, 60);
 		connectBtn.setOpaque(false);
 		connectBtn.setContentAreaFilled(false);
 		connectBtn.setBorderPainted(false);
 		connectBtn.setRolloverIcon(ImageCollection.CONNECT_BTN_CLICK_IMAGE);
 		connectBtn.addActionListener(e -> {
-			IP = IPtextField.getText();
-			ClientSocket clientSocket = new ClientSocket(IP);	
+			ClientSocket clientSocket = new ClientSocket(panelManager, IPtextField);	
 			IPtextField.setText("");
-			panelManager.changePanel(PanelManager.READY_PANEL);
 		});
 		
 		IPtextField.setBounds(250, 400, 500, 60);

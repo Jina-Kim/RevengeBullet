@@ -45,6 +45,7 @@ public class PanelManager {
 				break;
 			}
 			case READY_PANEL : {
+				readyPanel.setButton();
 				mainFrame.setContentPane(readyPanel);
 				mainFrame.revalidate();
 				break;
@@ -56,4 +57,5 @@ public class PanelManager {
 			}
 		}
 	}
+	
 }

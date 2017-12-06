@@ -13,6 +13,9 @@ public class HostSocketInputThread extends Thread {
 		this.socket = socket;
 		try {
 			dis = new DataInputStream(socket.getInputStream());
+			String data = dis.readUTF();
+			if(data.equals("client connected"))
+				System.out.println("connection success");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -22,14 +25,16 @@ public class HostSocketInputThread extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				System.out.println(dis.readUTF());
+				String data = dis.readUTF();
+				System.out.println(data);
+				
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.getStackTrace();
 				try {
-					socket.close();
+					if(socket!=null&&socket.isConnected())
+						socket.close();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e1.getStackTrace();
 				}
 			}
 		}
