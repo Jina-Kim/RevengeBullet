@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 import frame.*;
+import hostSocket.Receiver;
 
 public class IntroPanel extends JPanel {
 
@@ -29,20 +30,26 @@ public class IntroPanel extends JPanel {
 		hostStartBtn.setOpaque(false);
 		hostStartBtn.setContentAreaFilled(false);
 		hostStartBtn.setBorderPainted(false);
-		hostStartBtn.setPressedIcon(ImageCollection.HOST_START_BTN_CLICK_IMAGE);
+		hostStartBtn.setRolloverIcon(ImageCollection.HOST_START_BTN_CLICK_IMAGE);
 		hostStartBtn.addActionListener(e -> {
 			manMoveThread.interrupt();
+			titleMoveDownThread.interrupt();
+			Receiver receiver = new Receiver();
+			receiver.start();
 			panelManager.changePanel(PanelManager.READY_PANEL);
+			panelManager.setHostClient(1);
 		});
 		
 		clientStartBtn.setBounds(180, 420, 500, 60);
 		clientStartBtn.setOpaque(false);
 		clientStartBtn.setContentAreaFilled(false);
 		clientStartBtn.setBorderPainted(false);
-		clientStartBtn.setPressedIcon(ImageCollection.CLIENT_START_BTN_CLCK_IMAGE);
+		clientStartBtn.setRolloverIcon(ImageCollection.CLIENT_START_BTN_CLCK_IMAGE);
 		clientStartBtn.addActionListener(e -> {
 			manMoveThread.interrupt();
+			titleMoveDownThread.interrupt();
 			panelManager.changePanel(PanelManager.CONNECT_PANEL);
+			panelManager.setHostClient(2);
 		});
 		
 		add(man);
@@ -52,8 +59,6 @@ public class IntroPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				//panel.addMouseListener(new MyMouseListener(panel, label, titleDownMove, startBtn));
-				//if(arg0.getClickCount() == 1){
 				titleMoveDownThread.interrupt();
 				title.setBounds(50, 200, 800, 150);
 				add(hostStartBtn);

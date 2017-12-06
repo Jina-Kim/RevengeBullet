@@ -12,6 +12,8 @@ public class PanelManager {
 	public final static int READY_PANEL = 2;
 	public final static int STAGE1_PANEL = 3;
 	
+	public static int hostClient = 0; //1=host 2=client
+	
 	private MainFrame mainFrame;
 	private IntroPanel introPanel;
 	private ConnectPanel connectPanel;
@@ -24,6 +26,10 @@ public class PanelManager {
 		this.connectPanel = new ConnectPanel(this);
 		this.readyPanel = new ReadyPanel(this);
 		this.stage1Panel = new Stage1Panel(this);
+	}
+	
+	public void setHostClient(int num) {
+		hostClient = num;
 	}
 	
 	public void changePanel(int panel){

@@ -4,8 +4,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class HostSocketInputThread extends Thread{
-	
+public class HostSocketInputThread extends Thread {
+
 	private Socket socket;
 	private DataInputStream dis;
 
@@ -20,13 +20,19 @@ public class HostSocketInputThread extends Thread{
 	}
 
 	public void run() {
-		//while (true) {
-			try {	
+		while (true) {
+			try {
 				System.out.println(dis.readUTF());
 			} catch (IOException e) {
 				e.printStackTrace();
+				try {
+					socket.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-		//}
+		}
 	}
 
 }
