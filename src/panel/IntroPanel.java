@@ -34,7 +34,7 @@ public class IntroPanel extends JPanel {
 		hostStartBtn.addActionListener(e -> {
 			manMoveThread.interrupt();
 			titleMoveDownThread.interrupt();
-			Receiver receiver = new Receiver();
+			Receiver receiver = new Receiver(panelManager);
 			receiver.start();
 			panelManager.setHostClient(1);
 			panelManager.changePanel(PanelManager.READY_PANEL);

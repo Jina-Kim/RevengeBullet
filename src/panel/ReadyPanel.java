@@ -18,8 +18,10 @@ public class ReadyPanel extends JPanel {
 
 	private JButton startBtn = new JButton(ImageCollection.GAME_START_BTN_IMAGE);
 	private JButton readyBtn = new JButton(ImageCollection.READY_BTN_IMAGE);
-
+	private PanelManager panelManager;
+	
 	public ReadyPanel(PanelManager panelManager) {
+		this.panelManager = panelManager;
 		setLayout(null);
 	}
 
@@ -31,9 +33,6 @@ public class ReadyPanel extends JPanel {
 			startBtn.setBorderPainted(false);
 			startBtn.setEnabled(false);
 			startBtn.setRolloverIcon(ImageCollection.GAME_START_BTN_CLICK_IMAGE);
-			startBtn.addActionListener(e -> {
-				
-			});
 			add(startBtn);
 		}
 		else if(PanelManager.hostClient == 2) {
@@ -44,6 +43,7 @@ public class ReadyPanel extends JPanel {
 			readyBtn.setRolloverIcon(ImageCollection.READY_BTN_CLICK_IMAGE);
 			readyBtn.addActionListener(e -> {
 				ClientSocket.clientSocketOutputThread.send("ready");
+				readyBtn.setEnabled(false);
 			});
 			add(readyBtn);
 		}
@@ -52,6 +52,18 @@ public class ReadyPanel extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(ImageCollection.INTRO_IMAGE.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 		setOpaque(false);
+	}
+	
+	public void enableStartBtn() {
+		startBtn.setEnabled(true);
+		startBtn.addActionListener(e -> {
+			Receiver.hostSocketOuputThread.send("start");
+			panelManager.changePanel(PanelManager.STAGE1_PANEL);
+		});
+	}
+	
+	public void startGame() {
+		panelManager.changePanel(PanelManager.STAGE1_PANEL);
 	}
 
 }

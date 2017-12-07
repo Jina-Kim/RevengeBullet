@@ -21,9 +21,8 @@ public class ClientSocketOutputThread extends Thread {
 	}
 
 	public void send(String data) {
-		// this.data = data;
 		dataQueue.add(data);
-		System.out.println(data);
+		System.out.println("client output data :"+data);
 	}
 
 	public void run() {

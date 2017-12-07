@@ -58,4 +58,8 @@ public class PanelManager {
 		}
 	}
 	
+	public ReadyPanel getReadyPanel() {
+		return readyPanel;
+	}
+	
 }

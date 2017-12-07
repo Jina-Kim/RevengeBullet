@@ -17,7 +17,7 @@ public class ClientSocket {
 	public ClientSocket(PanelManager panelManager, JTextField IPtextField) {
 		try {
 			socket = new Socket(IPtextField.getText(), 22394);
-			clientSocketInputThread = new ClientSocketInputThread(socket);
+			clientSocketInputThread = new ClientSocketInputThread(socket, panelManager);
 			clientSocketOutputThread = new ClientSocketOutputThread(socket);
 			clientSocketInputThread.start();
 			clientSocketOutputThread.start();

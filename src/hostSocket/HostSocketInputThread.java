@@ -4,13 +4,19 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import javax.swing.JButton;
+
+import frame.PanelManager;
+
 public class HostSocketInputThread extends Thread {
 
 	private Socket socket;
 	private DataInputStream dis;
-
-	public HostSocketInputThread(Socket socket) {
+	private PanelManager panelManager;
+	
+	public HostSocketInputThread(Socket socket, PanelManager panelManager) {
 		this.socket = socket;
+		this.panelManager = panelManager;
 		try {
 			dis = new DataInputStream(socket.getInputStream());
 			String data = dis.readUTF();
@@ -26,8 +32,9 @@ public class HostSocketInputThread extends Thread {
 		while (true) {
 			try {
 				String data = dis.readUTF();
-				System.out.println(data);
-				
+				if(data.equals("ready")) {
+					panelManager.getReadyPanel().enableStartBtn();
+				} 
 			} catch (IOException e) {
 				e.getStackTrace();
 				try {

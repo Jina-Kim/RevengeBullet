@@ -1,12 +1,18 @@
 package panel;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
 import javax.swing.*;
 
+import clientSocket.ClientSocket;
 import frame.ImageCollection;
 import frame.PanelManager;
+import hostSocket.HostSocketOuputThread;
+import hostSocket.Receiver;
 
-public class Stage1Panel extends JPanel{
+public class Stage1Panel extends JPanel implements MouseMotionListener{
 	
 	JLabel enemy1 = new JLabel();
 	int stageFlag = 1;
@@ -47,6 +53,22 @@ public class Stage1Panel extends JPanel{
 			break;
 		}
 
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		
+	}
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		String msg = "mouse x:"+e.getX()+" y:"+e.getY();
+		if (PanelManager.hostClient == 1) {
+			Receiver.hostSocketOuputThread.send(msg);
+		}
+		else if(PanelManager.hostClient == 2) {
+			ClientSocket.clientSocketOutputThread.send(msg);
+		}
 	}
 	
 }
