@@ -3,7 +3,7 @@ package frame;
 import panel.ConnectPanel;
 import panel.IntroPanel;
 import panel.ReadyPanel;
-import panel.Stage1Panel;
+import panel.StagePanel;
 
 public class PanelManager {
 	
@@ -18,14 +18,14 @@ public class PanelManager {
 	private IntroPanel introPanel;
 	private ConnectPanel connectPanel;
 	private ReadyPanel readyPanel;
-	private Stage1Panel stage1Panel;
+	private StagePanel stagePanel;
 	
 	public PanelManager(MainFrame mainFrame){
 		this.mainFrame = mainFrame;
 		this.introPanel = new IntroPanel(this);
 		this.connectPanel = new ConnectPanel(this);
 		this.readyPanel = new ReadyPanel(this);
-		this.stage1Panel = new Stage1Panel(this);
+		this.stagePanel = new StagePanel(this);
 	}
 	
 	public void setHostClient(int num) {
@@ -51,7 +51,7 @@ public class PanelManager {
 				break;
 			}
 			case STAGE1_PANEL : {
-				mainFrame.setContentPane(stage1Panel);
+				mainFrame.setContentPane(stagePanel);
 				mainFrame.revalidate();
 				break;
 			}
@@ -60,6 +60,10 @@ public class PanelManager {
 	
 	public ReadyPanel getReadyPanel() {
 		return readyPanel;
+	}
+	
+	public StagePanel getStagePanel() {
+		return stagePanel;
 	}
 	
 }

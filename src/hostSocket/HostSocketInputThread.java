@@ -34,7 +34,13 @@ public class HostSocketInputThread extends Thread {
 				String data = dis.readUTF();
 				if(data.equals("ready")) {
 					panelManager.getReadyPanel().enableStartBtn();
-				} 
+				} else if(data.contains("mouse")) {
+					System.out.println(data);
+					String[] str = data.split(" ");
+					String[] mouseX = str[1].split(":");
+					String[] mouseY = str[2].split(":");
+					panelManager.getStagePanel().setMouseLabel(Integer.parseInt(mouseX[1]), Integer.parseInt(mouseY[1]));
+				}
 			} catch (IOException e) {
 				e.getStackTrace();
 				try {

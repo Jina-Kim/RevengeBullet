@@ -12,19 +12,25 @@ import frame.PanelManager;
 import hostSocket.HostSocketOuputThread;
 import hostSocket.Receiver;
 
-public class Stage1Panel extends JPanel implements MouseMotionListener{
+public class StagePanel extends JPanel implements MouseMotionListener{
 	
+	private JLabel mouseLabel = new JLabel();
 	JLabel enemy1 = new JLabel();
 	int stageFlag = 1;
 	boolean enemy = true;
 	
-	public Stage1Panel(PanelManager panelManager){
+	public StagePanel(PanelManager panelManager){
 		setLayout(null);
 		setBackground(Color.white);
+		//mouse label
+		mouseLabel.setIcon(ImageCollection.TARGET2_IMAGE);
+		mouseLabel.setBounds(0, 0, 50, 50);
+		add(mouseLabel);
 		//enemy test
 		enemy1.setIcon(ImageCollection.ENEMY1_IMAGE);
 		enemy1.setBounds(100, 100, 500, 500);
 		add(enemy1);
+		addMouseMotionListener(this);
 	}
 	public void setStateOneEmthyEnemy() {
 		
@@ -69,6 +75,10 @@ public class Stage1Panel extends JPanel implements MouseMotionListener{
 		else if(PanelManager.hostClient == 2) {
 			ClientSocket.clientSocketOutputThread.send(msg);
 		}
+	}
+	
+	public void setMouseLabel(int x, int y) {
+		mouseLabel.setLocation(x, y);
 	}
 	
 }
