@@ -1,84 +1,113 @@
 package panel;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import clientSocket.ClientSocket;
 import frame.ImageCollection;
 import frame.PanelManager;
-import hostSocket.HostSocketOuputThread;
 import hostSocket.Receiver;
+import model.Enemy;
 
-public class StagePanel extends JPanel implements MouseMotionListener{
-	
+public class StagePanel extends JPanel {
+
 	private JLabel mouseLabel = new JLabel();
-	JLabel enemy1 = new JLabel();
-	int stageFlag = 1;
-	boolean enemy = true;
-	
-	public StagePanel(PanelManager panelManager){
+	private int stageFlag = 1; // 1~6
+	int i = 0;
+	private ArrayList<ArrayList<Enemy>> stageEnemies = new ArrayList<ArrayList<Enemy>>();
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+
+	public StagePanel(PanelManager panelManager) {
 		setLayout(null);
 		setBackground(Color.white);
-		//mouse label
+		// mouse label
 		mouseLabel.setIcon(ImageCollection.TARGET2_IMAGE);
 		mouseLabel.setBounds(0, 0, 50, 50);
 		add(mouseLabel);
-		//enemy test
-		enemy1.setIcon(ImageCollection.ENEMY1_IMAGE);
-		enemy1.setBounds(100, 100, 500, 500);
-		add(enemy1);
-		addMouseMotionListener(this);
+
+		addMouseListener(new MyAdapter());
+		addMouseMotionListener(new MyAdapter());
 	}
-	public void setStateOneEmthyEnemy() {
+
+	public ArrayList<Enemy> getEnemies(){
+		return enemies;
+	}
+	
+	public void setEnemies(int stageFlag) {
 		
+		enemies.clear();
+		enemies.add(new Enemy(100, 310, 200));
+		enemies.add(new Enemy(600, 400, 200));
+		for (int i = 0; i < enemies.size(); i++) {
+			add(enemies.get(i));
+		}
 	}
-	public void setStateOneExistEnemy() {
-		
-	}
-	public void paintComponent(Graphics g){
+
+	@Override
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		setOpaque(false);
-		switch(stageFlag) {
+		switch (stageFlag) {
 		case 1:
-			if(enemy) 
-				setStateOneExistEnemy();
-			else
-				setStateOneEmthyEnemy();
-			g.drawImage(ImageCollection.STAGE1_IMAGE.getImage(), 0, 0, getWidth(), getHeight(), this);			
+			g.drawImage(ImageCollection.STAGE1_IMAGE.getImage(), 0, 0, getWidth(), getHeight(), this);
+			if (i == 0)
+				setEnemies(1);
+			i++;
 			break;
 		case 2:
+			g.drawImage(ImageCollection.STAGE1_IMAGE.getImage(), 0, 0, getWidth(), getHeight(), this);
+			
 			break;
 		case 3:
+			g.drawImage(ImageCollection.STAGE1_IMAGE.getImage(), 0, 0, getWidth(), getHeight(), this);
+			
 			break;
 		case 4:
 			break;
 		case 5:
 			break;
+		case 6:
+			break;
 		}
 
 	}
-	
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		
-	}
-	
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		String msg = "mouse x:"+e.getX()+" y:"+e.getY();
-		if (PanelManager.hostClient == 1) {
-			Receiver.hostSocketOuputThread.send(msg);
+
+	class MyAdapter extends MouseAdapter {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			for (int i = 0; i < enemies.size(); i++) {
+				if (enemies.get(i).getLocation().getX() - 25 < x && x < enemies.get(i).getLocation().getX() + 25) {
+					String msg = "enemy " + i;
+					if (PanelManager.hostClient == 1) {
+						Receiver.hostSocketOuputThread.send(msg);
+					} else if (PanelManager.hostClient == 2) {
+						ClientSocket.clientSocketOutputThread.send(msg);
+					}
+					enemies.get(i).killThread();
+				}
+			}
 		}
-		else if(PanelManager.hostClient == 2) {
-			ClientSocket.clientSocketOutputThread.send(msg);
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			String msg = "mouse x:" + e.getX() + " y:" + e.getY();
+			if (PanelManager.hostClient == 1) {
+				Receiver.hostSocketOuputThread.send(msg);
+			} else if (PanelManager.hostClient == 2) {
+				ClientSocket.clientSocketOutputThread.send(msg);
+			}
 		}
 	}
-	
+
 	public void setMouseLabel(int x, int y) {
 		mouseLabel.setLocation(x, y);
 	}
-	
+
 }

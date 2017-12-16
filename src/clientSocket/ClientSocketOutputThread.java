@@ -22,7 +22,7 @@ public class ClientSocketOutputThread extends Thread {
 
 	public void send(String data) {
 		dataQueue.add(data);
-		System.out.println("client output data :"+data);
+		//System.out.println("client output data :"+data);
 	}
 
 	public void run() {

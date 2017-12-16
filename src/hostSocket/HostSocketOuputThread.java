@@ -24,7 +24,7 @@ public class HostSocketOuputThread extends Thread{
 	 
 	public void send(String data) {
 		dataQueue.add(data);
-		System.out.println(data);
+		//System.out.println(data);
 	}
 	
 	@Override

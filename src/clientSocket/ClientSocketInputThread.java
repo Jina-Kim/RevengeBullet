@@ -29,11 +29,14 @@ public class ClientSocketInputThread extends Thread {
 				if(data.equals("start")) {
 					panelManager.getReadyPanel().startGame();
 				} else if(data.contains("mouse")) {
-					System.out.println(data);
+					//System.out.println(data);
 					String[] str = data.split(" ");
 					String[] mouseX = str[1].split(":");
 					String[] mouseY = str[2].split(":");
 					panelManager.getStagePanel().setMouseLabel(Integer.parseInt(mouseX[1]), Integer.parseInt(mouseY[1]));
+				} else if(data.contains("enemy")) {
+					String[] str = data.split(" ");
+					panelManager.getStagePanel().getEnemies().get(Integer.parseInt(str[1])).killThread();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
